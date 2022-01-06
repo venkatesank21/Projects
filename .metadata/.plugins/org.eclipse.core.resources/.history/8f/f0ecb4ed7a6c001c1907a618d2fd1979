@@ -1,0 +1,27 @@
+package com.Runner;
+
+import org.openqa.selenium.WebElement;
+
+import com.adactin.BaseClass;
+import com.adactin.login;
+
+public class Runner extends BaseClass {
+
+	public static void main(String[] args) {
+		BaseClass obj =new BaseClass();
+		obj.getUrl("http://automationpractice.com/index.php");
+		obj.browserLaunch("chrome");
+		obj.maximize();
+		obj.imlicitWait(10);
+//		login l = new login();
+//		WebElement email = l.getUser_name();
+//		obj.inputElement(email, "venkyhiking06");
+//		WebElement password=l.getPassword();
+//		obj.inputElement(password, "Iphone!23");
+//		WebElement login_click=l.getSignIn();
+//		obj.clickOnMouse(login_click);
+		
+
+	}
+
+}

@@ -1,0 +1,128 @@
+package com.adactin;
+
+
+
+import java.time.Duration;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class BaseClass {
+	public static WebDriver driver;
+	
+	public void browserLaunch(String browser) {
+		if (browser.equals("chrome")) {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+		} else if (browser.equals("firefox")) {
+			WebDriverManager.firefoxdriver().setup();
+			driver = new FirefoxDriver();
+
+		} else {
+			WebDriverManager.edgedriver().setup();
+			driver = new EdgeDriver();
+
+		}
+	}
+	public void maximize() {
+		driver.manage().window().maximize();
+
+	}
+
+	public void imlicitWait(long sec) {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(sec));
+
+	}
+
+	public void getUrl(String url) {
+		driver.get(url);
+
+	}
+
+	public void clickOnMouse(WebElement element) {
+		element.click();
+
+	}
+
+	public void inputElement(WebElement element, String value) {
+		element.sendKeys(value);
+	}
+	public void select(WebElement element, String type, String value) {
+		Select s  = new Select(element);
+		if (type.equalsIgnoreCase("visible")){
+			s.selectByVisibleText(value);
+			
+			
+		}
+		else {
+			s.selectByValue(value);
+		}
+		
+	}
+	public void select(WebElement element,int value) {
+		Select s  = new Select(element);
+			s.selectByIndex(value);
+			
+	}
+
+
+	public void closeBrowser() {
+		driver.close();
+
+	}
+
+	public void closeAll() {
+		driver.quit();
+
+	}
+	public void navigateTo(String Web) {
+		if(Web.equals("demo.guru") ) {
+			driver.navigate().to("http://demo.guru99.com/test/delete_customer.php");
+		}
+		else if(Web.equals("automation")) {
+			driver.navigate().to("http://automationpractice.com/index.php");
+			
+		}
+		else  {
+			driver.navigate().to("https://www.amazon.in/");
+		}
+		
+		
+	}
+	public void navigateBack() {
+		driver.navigate().back();  
+		
+	}
+	public void navigateForward() {
+		driver.navigate().forward();  
+	}
+	public void navigateRefresh() {
+		driver.navigate().refresh();
+	}
+	public void alert() {
+		Alert alert = driver.switchTo().alert();
+		alert.accept();	
+		
+	}
+	public void action(WebElement women, String string) {
+		
+	    Actions wo = new Actions(driver);
+		wo.moveToElement(women).build().perform();
+		
+	}
+	public void getTitle(String title) {
+		driver.get(title);
+		System.out.println(title);
+	}
+	
+
+
+}

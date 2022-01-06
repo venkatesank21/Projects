@@ -1,0 +1,76 @@
+package com.Runner;
+
+import org.openqa.selenium.WebElement;
+
+
+import com.adactin.BaseClass;
+import com.adactin.Book;
+import com.adactin.ConfirmBooking;
+import com.adactin.SearchHotel;
+import com.adactin.login;
+
+public class Runner extends BaseClass {
+
+	public static void main(String[] args) {
+		BaseClass obj =new BaseClass();
+		obj.browserLaunch("chrome");
+		obj.maximize();
+		obj.imlicitWait(10);
+		obj.getUrl("https://adactinhotelapp.com/index.php");
+		
+     	login l = new login();
+		WebElement email = l.getUser_name();
+		obj.inputElement(email, "venkyhiking06");
+		WebElement password=l.getPassword();
+		obj.inputElement(password, "Iphone!23");
+		WebElement login_click=l.getSignIn();
+		obj.clickOnMouse(login_click);
+		
+     	SearchHotel s = new SearchHotel();
+ 		WebElement location= s.getLocation();
+     	obj.select(location, "visible", "Sydney");
+     	WebElement hotels=s.getHotels();
+     	obj.select(hotels, "visible", "Hotel Creek");
+     	WebElement roomtype=s.getRoomtype();
+     	obj.select(roomtype, "visible", "Standard");
+     	WebElement rooms=s.getRoomnos();
+     	obj.select(rooms, "visible", "2 - Two");
+     	WebElement checkdate=s.getCheckin();
+     	obj.inputElement(checkdate, "10/01/2022");
+     	WebElement checkout=s.getCheckout();
+     	obj.inputElement(checkout, "12/01/2022");
+     	WebElement Adult=s.getAdultroom();
+     	obj.select(Adult, "visible", "2 - Two");
+     	WebElement submit=s.getSubmit();
+     	obj.clickOnMouse(submit);
+		
+		ConfirmBooking C =new ConfirmBooking();
+		WebElement radi=C.getRadiobutton();
+		obj.clickOnMouse(radi);
+		WebElement submitt=C.getSubmit();
+		obj.clickOnMouse(submitt);
+		
+		Book B = new Book();
+		WebElement firstname=B.getFname();
+		obj.inputElement(firstname, "Venkatesan");
+		WebElement lastname=B.getLname();
+		obj.inputElement(lastname, "Kannan");
+		WebElement addresss =B.getAddress();
+		obj.inputElement(addresss, "No 8 sowbackia lakshmi street Chennai");
+		WebElement creditcard=B.getCc();
+		obj.inputElement(creditcard, "4234456778943456");
+		WebElement credittype=B.getCctype();
+		obj.select(credittype, "visible", "VISA");
+		WebElement month=B.getExpmonth();
+		obj.select(month, "visible", "February");
+		WebElement year=B.getExpyear();
+		obj.select(year, "visible", "2022");
+		WebElement cvvv=B.getCvv();
+		obj.inputElement(cvvv, "060");
+		WebElement submitclick=B.getSubmit();
+		obj.clickOnMouse(submitclick);
+		
+
+	}
+
+}
